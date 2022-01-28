@@ -1,0 +1,46 @@
+.hero{
+    margin-top: 2rem;
+    position: relative;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero > h1{
+    font-size: 3rem;
+    font-weight: 200;
+}
+
+.highText{
+    font-size: 6rem;
+    font-family: serif;
+    font-weight: 400;
+}
+
+.center{
+    position: absolute;
+    width: 80vh;
+    height: 80vh;
+    top: 0;
+    left: 20%;
+    border-radius: 50%;
+    background: #007FFF;
+    z-index: -1;
+}
+
+.img1{
+    position: absolute;
+    top: 0;
+    left: -10rem;
+    width: 20rem;
+}
+
+.img2{
+    position: absolute;
+    bottom: 0;
+    right: -10rem;
+    width: 20rem;
+}
