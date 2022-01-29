@@ -4,8 +4,6 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
     color: #007FFF;
 }
 
@@ -28,18 +26,14 @@ h1{
 .navItems{
     margin: 0 1rem;
     font-size: 1.25rem;
-
 }
 
-button{
+.navBtn{
     padding: .5rem 1.25rem;
-
     font-size: 1rem;
-
     outline: none;
     border: none;
     border-radius: .75rem;
-
     background: #007FFF;
     color: #fff;
 }

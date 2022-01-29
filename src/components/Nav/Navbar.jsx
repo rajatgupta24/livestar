@@ -11,7 +11,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className={styles.right}>
-        <button><a href="/quiz">Play Now</a></button>
+        <button className={styles.navBtn}><a href="/quiz">Play Now</a></button>
       </div>
     </nav>
   );

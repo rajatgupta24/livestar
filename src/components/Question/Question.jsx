@@ -21,13 +21,13 @@ const Question = (props) => {
 
   return (
     <div className={styles.questionBox}>
-      <p>{props.question.question}</p>
-      <ol>
+      <p className={styles.question}>{props.question.question}</p>
+      <ol className={styles.options}>
         {
           options.length !== 0 && (
             options.map((option, i) => {
               return (
-                <li key={i}>{option}</li>
+                <li className={styles.option} key={i}>{option}</li>
               )
             })
           )

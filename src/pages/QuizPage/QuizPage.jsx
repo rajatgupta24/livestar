@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Question from '../../components/Question/Question';
 
+import styles from "./styles.module.css";
+
 const QuizPage = () => {
   const [question, setQuestion] = useState([]);
 
@@ -19,10 +21,13 @@ const QuizPage = () => {
   }
 
   return (
-    <div>
+    <div className={styles.box}>
       {
         question.length !== 0 && <Question question={question[0]} />
       }
+      <div className={styles.btns}>
+        <button className={styles.checkBtn}>Check</button>
+      </div>
     </div>
   );
 };
