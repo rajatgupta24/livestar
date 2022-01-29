@@ -5,13 +5,13 @@ const Navbar = () => {
     <nav>
       <div className={styles.left}>
         <h1>Hello Quizz</h1>
-        <ul>
-          <li>LeaderBoard</li>
-          <li>Get Involved</li>
+        <ul className={styles.navList}>
+          <li className={styles.navItems}>LeaderBoard</li>
+          <li className={styles.navItems}>Get Involved</li>
         </ul>
       </div>
       <div className={styles.right}>
-        <button>Play Now</button>
+        <button><a href="/quiz">Play Now</a></button>
       </div>
     </nav>
   );
