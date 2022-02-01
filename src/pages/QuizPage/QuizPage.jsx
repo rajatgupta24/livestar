@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-// import Question from '../../components/Question/Question';
 import styles from "./styles.module.css";
 
 const QuizPage = () => {
-
   const [question, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answer, setAnswer] = useState(null);
@@ -21,7 +19,7 @@ const QuizPage = () => {
 
   const getQuestion = async () => {
     try {
-      const res = await axios.get(`https://quizapi.io/api/v1/questions?apiKey=${process.env.REACT_APP_API_KEY}&category=Linux&difficulty=Easy&limit=10`);
+      const res = await axios.get(`https://quizapi.io/api/v1/questions?apiKey=${process.env.REACT_APP_API_KEY}&limit=10`);
       setQuestion(res.data);
     } catch (error) {
       console.log(error);
@@ -50,20 +48,10 @@ const QuizPage = () => {
   };
 
   const checkAnswer = () => {
-    console.log("correct", correctAnswer)
-    console.log("select", answer)
-
     if (correctAnswer === answer) console.log("right +++++++");
-    else console.log("wrong -------")
+    else console.log("wrong -------");
 
-    // if (correctAnswer === null || answer === null) return;
-
-    // else if (correctAnswer === answer) {
-    //   console.log("correct");
-      
-    //   getOptions();
-
-    // }
+    setAnswer(null);
 
     if(currentIndex <= 9) {
       console.log(currentIndex)
@@ -76,21 +64,30 @@ const QuizPage = () => {
 
   return (
     <div className={styles.box}>
-      {currentIndex}
-
-      {
-        question.length !== 0 && <p>{question[currentIndex].question}</p>
-      }
-      
-      {
-        options.length !== 0 && (
-          options.map((option, i) => 
-            <li onClick={() => setAnswer(i)} className={styles.option} key={i}>{option}</li>
-          )
-        )
-      }
-
+      <div className={styles.nav}>
+        <p>Question: {currentIndex + 1}/10</p>
+        <p>Score: 0</p>
+        <p>Time: 0</p>
+      </div>
+      <div className={styles.question}>
+        {
+          question.length !== 0 && <p>Q. {question[currentIndex].question}</p>
+        }
+        <ol className={styles.options}>
+          {
+            options.length !== 0 && (
+              options.map((option, i) => 
+                <li onClick={() => setAnswer(i)} className={answer === i ? styles.answer : styles.option} key={i}>{option}</li>
+              )
+            )
+          }
+        </ol>
+      </div>
       <div className={styles.btns}>
+        <div>
+          Tags
+          Hint
+        </div>
         <button onClick={checkAnswer} className={styles.checkBtn}>Check</button>
       </div>
     </div>
