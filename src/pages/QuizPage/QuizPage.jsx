@@ -1,13 +1,18 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+
+import Countdown from "react-countdown";
+
 import styles from "./styles.module.css";
 
 const QuizPage = () => {
   const [question, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [score, setScore] = useState(0);
   const [answer, setAnswer] = useState(null);
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [options, setOptions] = useState([]);
+  const [allow, setAllow] = useState(true);
 
   useEffect(() => {
     getQuestion();
@@ -21,6 +26,7 @@ const QuizPage = () => {
     try {
       const res = await axios.get(`https://quizapi.io/api/v1/questions?apiKey=${process.env.REACT_APP_API_KEY}&limit=10`);
       setQuestion(res.data);
+      
     } catch (err) {
       console.log("error", err)
     }
@@ -48,17 +54,20 @@ const QuizPage = () => {
   };
 
   const checkAnswer = () => {
-    if (correctAnswer === answer) console.log("right +++++++");
-    else console.log("wrong -------");
-
-    setAnswer(null);
-
-    if(currentIndex <= 9) {
-      console.log(currentIndex)
-      setCurrentIndex(currentIndex+1);
-    }
-    else {
-      console.log("game OVERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+    if (allow){
+      if (correctAnswer === answer) {
+        setScore(score + 1);
+      } else {
+        setScore(score - 1);
+      }
+  
+      setAnswer(null);
+  
+      if(currentIndex <= 9) {
+        setCurrentIndex(currentIndex+1);
+      } else {
+        console.log("game OVERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+      }
     }
   }
 
@@ -66,8 +75,17 @@ const QuizPage = () => {
     <div className={styles.box}>
       <div className={styles.nav}>
         <p>Question: {currentIndex + 1}/10</p>
-        <p>Score: 0</p>
-        <p>Time: 0</p>
+        <p>Score: {score}</p>
+        <p>
+          Time: 
+          <Countdown 
+            daysInHours={true}
+            key={currentIndex}
+            date={Date.now() + 60000}
+            onComplete={() => setAllow(false)}  
+          />
+        </p>
+        
       </div>
       <div className={styles.question}>
         {
@@ -84,6 +102,7 @@ const QuizPage = () => {
         </ol>
       </div>
       <div className={styles.btns}>
+      <button onClick={checkAnswer} className={styles.checkBtn}>Skip</button>
         <div>
           Tags
           Hint
