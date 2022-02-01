@@ -21,8 +21,8 @@ const QuizPage = () => {
     try {
       const res = await axios.get(`https://quizapi.io/api/v1/questions?apiKey=${process.env.REACT_APP_API_KEY}&limit=10`);
       setQuestion(res.data);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log("error", err)
     }
   }
 
