@@ -9,6 +9,7 @@
 
 .question{
     font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 .options{
@@ -17,10 +18,14 @@
     flex-direction: column;
 }
 
-.option{
+.option, .answer{
     margin-top: 1rem;
     padding: .5rem 1rem;
     border-radius: 1rem;
     box-shadow: 0px 0px 10px 4px #ddd;
     cursor: pointer;
+}
+
+.answer{
+    background: blue;
 }
