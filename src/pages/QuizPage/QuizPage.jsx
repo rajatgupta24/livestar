@@ -15,7 +15,7 @@ const QuizPage = () => {
 
   useEffect(() => {
     getOptions();
-  }, [question, currentIndex])
+  }, [question, currentIndex]);
 
   const getQuestion = async () => {
     try {
